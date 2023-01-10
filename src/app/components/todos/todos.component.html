@@ -1,0 +1,26 @@
+<div class="todos"> // Esta clase se encuentra en el todos.component.css
+
+	<form (submit)="addTodo()"> // Recibe un evento submit y ejecuta la función addTodo() que se encuentra en el todos.component.ts
+
+		<input // Input que se va a renderizar en el app.component.html
+			type="text"
+			name="inputTodo"
+			placeholder="Enter todo..."
+			class="todo-input"
+			[(ngModel)]="inputTodo"
+		/>
+
+		<input type="submit" value="Add Todo" class="todo-submit" /> // Crea un botón que se va a renderizar en el app.component.html
+
+	</form>
+
+	<div *ngFor="let todo of todos; let i = index;" class="todo {{ (todo.completed ? 'done' : '') }}"> // ngFor es una directiva de Angular que permite iterar sobre un arreglo de datos. En este caso, el arreglo de datos es el arreglo todos que se encuentra en el todos.component.ts. La variable i es el índice del arreglo. Repite el div para cada elemento del arreglo, para cada todo del arreglo, se va a renderizar un div con la clase todo y si el todo está completado, se le agrega la clase done. La clase done se encuentra en el todos.component.css
+
+		<div class="id">{{ i }}</div> // Se renderiza el índice del arreglo. Es el numero que se muestra en la lista de todos.
+
+		<div class="content" (click)="toggleDone(i)">{{ todo.content }}</div> // Si se hace click en el contenido del todo, se ejecuta la función toggleDone() que se encuentra en el todos.component.ts
+
+		<button class="delete" (click)="deleteTodo(i)">Remove</button> // Si se hace click en el botón, se ejecuta la función deleteTodo() que se encuentra en el todos.component.ts
+
+	</div>
+</div>
